@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}{{pet.name}}{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <img class="img-thumbnail" src="{{pet.photo_url}}" alt="">
+    <div class="row">{{pet.name}}</div>
+    <div class="row">{{pet.age}}</div>
+    <div class="row">{{pet.species}}</div>
+    <div class="row">{{pet.notes}}</div>
+    <a href="/{{pet.id}}/edit" class="btn btn-lg btn-warning" role="button">Edit Me</a>
+    <a href="/" class="btn btn-lg btn-success" role="button">Go Back</a>
+
+</div>
+
+
+
+{% endblock %} 

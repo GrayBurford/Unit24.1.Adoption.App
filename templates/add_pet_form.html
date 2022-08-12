@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Pet{% endblock %}
+
+{% block body %}
+<h1>Add a new pet here:</h1>
+  <form method="POST">
+    {{ form.hidden_tag() }}
+    <!-- This code renders the hidden fields into our form, but keeps them hidden -->
+    {% for field in form if field.widget.input_type != 'hidden'%}
+      <!-- This means, if the form field is NOT a hidden field, then render them. This keeps the CSRF Token out of the rendering! -->
+    <p>
+      {{field.label}}
+      {{field}}
+
+      {% for err in field.errors %}
+      <small class="form-text text-danger">
+        {{err}}
+      </small>
+      {% endfor %}
+    </p>
+    {% endfor %}
+    <button class="btn btn-lg btn-success">Submit</button>
+    <a href="/" class="btn btn-lg btn-primary" role="button">Go Back</a>
+
+  </form>
+  <br>
+{% endblock %}

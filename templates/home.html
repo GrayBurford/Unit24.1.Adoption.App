@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Pet Adoption Home Page
+{% endblock %}
+
+{% block body %}
+
+<h1 class="display-3">Available pets below:</h1>
+{% for msg in get_flashed_messages() %}
+<h1 class="display-6 text-success font-weight-bold">***{{msg}}***</h1>
+{% endfor %}
+
+<div class="container row">
+    {% for pet in pets %}
+        <div class="col-3">
+            <img class="img-fluid" src="{{pet.image_url()}}" alt="{{pet.name}}'s profile pic">
+            <a href="/{{pet.id}}">{{pet.name}}</a>
+            {% if pet.available == True %}
+            <div class="strong d-inline-block">is Available!</div>
+            {% else %}
+            <div class="d-inline-block">is not available</div>
+            {% endif %}
+            <small class="d-block font-italic">{{pet.identify_myself()}}</small>
+        </div>
+    {% endfor %}
+</div>
+
+<br>
+<a href="/add" class="btn btn-lg btn-success" role="button">Add New Pet!</a>
+
+
+{% endblock %}
